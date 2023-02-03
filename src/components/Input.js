@@ -4,28 +4,35 @@ import { useState } from "react";
 
 export default function Input(){
 const [text,setText]=useState("");
-const [updated,setUpdated]=useState(text);
+const [todo,setTodo]=useState([]);
+
+const listPush=()=>{
+    
+    todo.push(text);
+    setTodo(todo);
+    setText("");
+    
 
 
-
-
+};
 
 const handleChange=(event)=>{
 
     setText(event.target.value);
 };
 
-const handleClick=()=>{
-    setUpdated(text);
-};
 
 return (
     <>
     <center>
-        <input type="text" id="message" name="todolits_element" onChange={handleChange} value={text} placeholder="Add your tasks here!!"/>
-        <button onClick={handleClick}>Updated</button>
+        <input type="text" id="message" name="todolist_element" onChange={handleChange} value={text} placeholder="Add your tasks here!!"/>
+        <button onClick={listPush}>Updated</button>
         <br /><br />
-        {updated}
+            
+                {todo.length>0 && todo.map((item)=><li>{item}</li>)}
+
+
+           
         </center>
         
     
